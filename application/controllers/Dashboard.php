@@ -9,7 +9,9 @@ class Dashboard extends CI_Controller {
     }
 	public function index()
 	{
-		$data['user'] = $this->session->userdata('nama_user'); 
+		$id_role = $this->session->userdata('id_role');
+		$data['menu'] = $this->main->get_menu_selected($id_role); 
 		$this->load->view('dashboard',$data);
 	}
+
 }

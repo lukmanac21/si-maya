@@ -3,7 +3,7 @@
 <head>
 <?php $this->load->view('_partials/head');?>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" >
 <div class="wrapper">
   <!-- Navbar -->
   <?php $this->load->view('_partials/navbar');?>
@@ -14,33 +14,24 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard v2</h1>
-          </div><!-- /.col -->  
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
     <!-- Main content -->
     <section class="content">
+    <div class="card">
+      <div class="card-header" style="margin-bottom:15px;">
+        <h3 class="card-title">Dashboard</h3>
+      </div>
       <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+              <span class="info-box-icon bg-secondary elevation-1"><i class="nav-icon far fa-envelope"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Dinas</span>
-                <span class="info-box-number">
+              <span class="info-box-number" style="font-size:20px; padding-bottom:4px;">
                   10
-                  <small>%</small>
                 </span>
+                <span class="info-box-text">Surat Masuk</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -49,11 +40,13 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+              <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-reply"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Pesan</span>
-                <span class="info-box-number">41,410</span>
+              <span class="info-box-number" style="font-size:20px; padding-bottom:4px;">
+                  10
+                </span>
+                <span class="info-box-text">Dispo Masuk</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -66,11 +59,13 @@
 
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+              <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-share"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Sales</span>
-                <span class="info-box-number">760</span>
+              <span class="info-box-number" style="font-size:20px; padding-bottom:4px;">
+                  10
+                </span>
+                <span class="info-box-text">Dispo Keluar</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -79,32 +74,51 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
+              <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-users"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text">New Members</span>
-                <span class="info-box-number">2,000</span>
+              <span class="info-box-number" style="font-size:20px; padding-bottom:4px;">
+                  10
+                </span>
+                <span class="info-box-text">Buku Tamu</span>
               </div>
-              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box -->
           </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
-      </div><!--/. container-fluid -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Surat Masuk Terbaru</h3>
+          </div>
+          <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>No Surat / No Agenda</th>
+                <th>Tanggal Surat</th>
+                <th>Jenis Pengirim Klasifikasi</th>
+                <th>Asal Surat</th>
+                <th>Tujuan Surat</th>
+                <th>Perihal</th>
+                <th>Status Disposisi</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td><a href="#">23523653456</td>
+                <td>30-07-2020</td>
+                <td>Perorangan Berita Acara</td>
+                <td>Eka Kusuma (Dinas Kominfo)</td>
+                <td>Bupati Kab. Bondowoso</td>
+                <td>Nama Perihal<br> Dibaca Pada </td>
+                <td>Diterima</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
   <?php $this->load->view('_partials/footer');?>
 </body>
 </html>

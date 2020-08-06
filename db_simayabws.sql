@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Jul 2020 pada 09.56
+-- Waktu pembuatan: 06 Agu 2020 pada 15.51
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.8
 
@@ -25,6 +25,83 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tbl_bagian`
+--
+
+CREATE TABLE `tbl_bagian` (
+  `id_bagian` int(11) NOT NULL,
+  `id_dinas` int(11) NOT NULL,
+  `nama_bagian` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_bagian`
+--
+
+INSERT INTO `tbl_bagian` (`id_bagian`, `id_dinas`, `nama_bagian`) VALUES
+(1, 1, 'Kepala Dinas'),
+(2, 1, 'Kepala Bidang'),
+(3, 1, 'Kepala Sie'),
+(4, 1, 'Sekretaris Dinas'),
+(10, 1, 'Tata Usaha'),
+(12, 1, 'Programmer'),
+(13, 2, 'Kepala Dinas');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_dinas`
+--
+
+CREATE TABLE `tbl_dinas` (
+  `id_dinas` int(11) NOT NULL,
+  `nama_dinas` varchar(50) NOT NULL,
+  `alamat_dinas` varchar(120) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_dinas`
+--
+
+INSERT INTO `tbl_dinas` (`id_dinas`, `nama_dinas`, `alamat_dinas`) VALUES
+(1, 'Dinas Komunikasi dan Informatika', ''),
+(2, 'Dinas Pertanian', 'Jalan'),
+(3, 'Dinas Sosial', ''),
+(4, 'Dinas Perhubungan', ''),
+(5, 'Dinas Ketahanan Pangan', 'Jalan'),
+(6, 'Dinas Kesehatan', 'Jalan 1');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_dispokeluar`
+--
+
+CREATE TABLE `tbl_dispokeluar` (
+  `id_dispokeluar` int(11) NOT NULL,
+  `id_surat` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `tgl_dispokeluar` date NOT NULL,
+  `id_userby` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_dispomasuk`
+--
+
+CREATE TABLE `tbl_dispomasuk` (
+  `id_dispomasuk` int(11) NOT NULL,
+  `id_surat` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `tgl_dispomasuk` date NOT NULL,
+  `id_userby` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tbl_menu`
 --
 
@@ -34,6 +111,138 @@ CREATE TABLE `tbl_menu` (
   `icon_menu` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `tbl_menu`
+--
+
+INSERT INTO `tbl_menu` (`id_menu`, `nama_menu`, `icon_menu`) VALUES
+(2, 'Data Master', 'nav-icon fas fa-th'),
+(3, 'Kotak Surat Masuk', 'nav-icon far fa-envelope'),
+(4, 'Kotak Surat Keluar', 'nav-icon fas fa-envelope'),
+(6, 'Buku Tamu', 'nav-icon fas fa-book'),
+(7, 'Agenda', 'nav-icon fas fa-calendar');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_perihal`
+--
+
+CREATE TABLE `tbl_perihal` (
+  `id_perihal` int(11) NOT NULL,
+  `kode_perihal` varchar(12) NOT NULL,
+  `nama_perihal` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_perihal`
+--
+
+INSERT INTO `tbl_perihal` (`id_perihal`, `kode_perihal`, `nama_perihal`) VALUES
+(1, '', 'Pemberitahuan'),
+(2, '', 'Permohonan Pengiriman Delegasi');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_role`
+--
+
+CREATE TABLE `tbl_role` (
+  `id_role` int(11) NOT NULL,
+  `id_dinas` int(11) NOT NULL,
+  `nama_role` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_role`
+--
+
+INSERT INTO `tbl_role` (`id_role`, `id_dinas`, `nama_role`) VALUES
+(1, 1, 'Superadmin'),
+(2, 1, 'Admin'),
+(6, 1, 'User');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_status_surat`
+--
+
+CREATE TABLE `tbl_status_surat` (
+  `id_status_surat` int(11) NOT NULL,
+  `nama_status_surat` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_status_surat`
+--
+
+INSERT INTO `tbl_status_surat` (`id_status_surat`, `nama_status_surat`) VALUES
+(1, 'Diterima'),
+(2, 'Dibaca'),
+(3, 'Disposisi'),
+(4, 'Ditolak');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_sub_menu`
+--
+
+CREATE TABLE `tbl_sub_menu` (
+  `id_sub_menu` int(11) NOT NULL,
+  `id_menu` int(11) NOT NULL,
+  `nama_sub_menu` varchar(30) NOT NULL,
+  `link_sub_menu` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_sub_menu`
+--
+
+INSERT INTO `tbl_sub_menu` (`id_sub_menu`, `id_menu`, `nama_sub_menu`, `link_sub_menu`) VALUES
+(2, 2, 'Master Dinas', 'Dinas/index'),
+(3, 2, 'Master Menu', 'Menu/index'),
+(4, 2, 'Master Role', 'Role/index'),
+(5, 3, 'Surat Masuk', 'Surat/surat_masuk'),
+(6, 4, 'Surat Keluar', 'Surat/surat_keluar'),
+(7, 2, 'Master Sub Menu', 'Submenu/index'),
+(8, 2, 'Master Perihal Surat', 'Perihalsurat/index'),
+(9, 3, 'Konsep Surat Masuk', 'Konsepsmasuk/index'),
+(10, 3, 'Disposisi Keluar', 'Dispokeluar/index'),
+(11, 3, 'Disposisi Inisiatif', 'Dispoinisiatif/index'),
+(12, 3, 'Buat Surat', 'Surat/index'),
+(14, 2, 'Master User', 'User/index'),
+(15, 2, 'Master Status Surat', 'Statussurat/index'),
+(16, 2, 'Master Bagian', 'Bagian/index');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_surat`
+--
+
+CREATE TABLE `tbl_surat` (
+  `id_surat` int(11) NOT NULL,
+  `id_pengirim` int(11) NOT NULL,
+  `id_penerima` int(11) NOT NULL,
+  `id_perihal` int(11) NOT NULL,
+  `no_surat` varchar(50) NOT NULL,
+  `tgl_surat` date NOT NULL,
+  `tgl_surat_kirim` datetime NOT NULL,
+  `isi_surat` text NOT NULL,
+  `status_dibaca` datetime NOT NULL,
+  `status_surat` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_surat`
+--
+
+INSERT INTO `tbl_surat` (`id_surat`, `id_pengirim`, `id_penerima`, `id_perihal`, `no_surat`, `tgl_surat`, `tgl_surat_kirim`, `isi_surat`, `status_dibaca`, `status_surat`) VALUES
+(1, 1, 2, 1, '005/430.9.5/2020', '2020-08-06', '2020-08-06 20:43:50', '<p class=\"MsoNormal\" style=\"margin-top:.2pt;margin-right:0cm;margin-bottom:0cm;\r\nmargin-left:64.4pt;margin-bottom:.0001pt;text-align:justify;text-indent:26.6pt;\r\nline-height:150%\"><span lang=\"EN-ID\" style=\"font-size:14.0pt;line-height:150%;\r\nfont-family:&quot;Cambria&quot;,&quot;serif&quot;;mso-fareast-font-family:Cambria;mso-bidi-font-family:\r\nArial;mso-ansi-language:EN-ID;mso-bidi-font-weight:bold\">Dalam rangka </span><span style=\"font-size:14.0pt;line-height:150%;font-family:&quot;Cambria&quot;,&quot;serif&quot;;\r\nmso-fareast-font-family:Cambria;mso-bidi-font-family:Arial;mso-ansi-language:\r\nIN;mso-bidi-font-weight:bold\">dilaksanakannya Studi Tiru Implementasi\r\nYogyakarta Smart City, dimana salah satu ketentuan yang dipersyaratkan adalah\r\nmembawa dan menunjukan Surat Keterangan Rapid Test dengan hasil Non Reaktif\r\nyang masih berlaku 3 (tiga) hari pada saat kunjungan, maka kami mengajukan\r\npemeriksaan Rapid Test Covid-19 bagi Tim Studi Tiru Kabupaten Bondowoso yang\r\nberjumlah 20 (dua puluh) orang.<o:p></o:p></span></p>\r\n\r\n<p class=\"MsoNormal\" style=\"margin-top:.2pt;margin-right:0cm;margin-bottom:0cm;\r\nmargin-left:64.4pt;margin-bottom:.0001pt;text-align:justify;text-indent:26.6pt;\r\nline-height:150%;tab-stops:189.0pt\"><span style=\"font-size:14.0pt;line-height:\r\n150%;font-family:&quot;Cambria&quot;,&quot;serif&quot;;mso-fareast-font-family:Cambria;mso-bidi-font-family:\r\nArial;mso-ansi-language:IN;mso-bidi-font-weight:bold\">Demikian atas permohonan\r\nkami, atas perhatian dan kerjasamanya disampaikan terima kasih<o:p></o:p></span></p>                        ', '0000-00-00 00:00:00', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -42,8 +251,9 @@ CREATE TABLE `tbl_menu` (
 
 CREATE TABLE `tbl_user` (
   `id_user` int(11) NOT NULL,
-  `id_level` int(11) NOT NULL,
+  `id_role` int(11) NOT NULL,
   `id_dinas` int(11) NOT NULL,
+  `id_bagian` int(11) NOT NULL,
   `nama_user` varchar(50) NOT NULL,
   `email_user` varchar(50) NOT NULL,
   `password_user` varchar(200) NOT NULL
@@ -53,12 +263,77 @@ CREATE TABLE `tbl_user` (
 -- Dumping data untuk tabel `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`id_user`, `id_level`, `id_dinas`, `nama_user`, `email_user`, `password_user`) VALUES
-(1, 1, 1, 'Lukman Arief Cahyono', 'lukman@devplus.com', 'd033e22ae348aeb5660fc2140aec35850c4da997');
+INSERT INTO `tbl_user` (`id_user`, `id_role`, `id_dinas`, `id_bagian`, `nama_user`, `email_user`, `password_user`) VALUES
+(1, 1, 1, 10, 'Lukman Arief Cahyono', 'lukman@devplus.com', 'd033e22ae348aeb5660fc2140aec35850c4da997'),
+(2, 1, 1, 10, 'Fajar Dewandaru', 'fajar@devplus.com', 'd033e22ae348aeb5660fc2140aec35850c4da997'),
+(3, 2, 2, 10, 'Dendi Sadega', 'dendi@devplus.com', 'd033e22ae348aeb5660fc2140aec35850c4da997'),
+(4, 6, 1, 3, 'Eka Kusuma A, S.Kom', 'ekakusuma@kominfo.com', 'd033e22ae348aeb5660fc2140aec35850c4da997');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_user_access`
+--
+
+CREATE TABLE `tbl_user_access` (
+  `id_user_access` int(11) NOT NULL,
+  `id_role` int(11) NOT NULL,
+  `id_sub_menu` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_user_access`
+--
+
+INSERT INTO `tbl_user_access` (`id_user_access`, `id_role`, `id_sub_menu`) VALUES
+(4, 2, 12),
+(5, 2, 11),
+(6, 2, 10),
+(7, 2, 9),
+(8, 2, 6),
+(9, 2, 5),
+(10, 1, 12),
+(11, 1, 11),
+(12, 1, 10),
+(13, 1, 9),
+(14, 1, 2),
+(15, 1, 3),
+(16, 1, 8),
+(17, 1, 4),
+(18, 1, 7),
+(19, 1, 14),
+(20, 1, 6),
+(21, 1, 5),
+(22, 1, 15),
+(23, 1, 16);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `tbl_bagian`
+--
+ALTER TABLE `tbl_bagian`
+  ADD PRIMARY KEY (`id_bagian`);
+
+--
+-- Indeks untuk tabel `tbl_dinas`
+--
+ALTER TABLE `tbl_dinas`
+  ADD PRIMARY KEY (`id_dinas`);
+
+--
+-- Indeks untuk tabel `tbl_dispokeluar`
+--
+ALTER TABLE `tbl_dispokeluar`
+  ADD PRIMARY KEY (`id_dispokeluar`);
+
+--
+-- Indeks untuk tabel `tbl_dispomasuk`
+--
+ALTER TABLE `tbl_dispomasuk`
+  ADD PRIMARY KEY (`id_dispomasuk`);
 
 --
 -- Indeks untuk tabel `tbl_menu`
@@ -67,26 +342,122 @@ ALTER TABLE `tbl_menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
+-- Indeks untuk tabel `tbl_perihal`
+--
+ALTER TABLE `tbl_perihal`
+  ADD PRIMARY KEY (`id_perihal`);
+
+--
+-- Indeks untuk tabel `tbl_role`
+--
+ALTER TABLE `tbl_role`
+  ADD PRIMARY KEY (`id_role`);
+
+--
+-- Indeks untuk tabel `tbl_status_surat`
+--
+ALTER TABLE `tbl_status_surat`
+  ADD PRIMARY KEY (`id_status_surat`);
+
+--
+-- Indeks untuk tabel `tbl_sub_menu`
+--
+ALTER TABLE `tbl_sub_menu`
+  ADD PRIMARY KEY (`id_sub_menu`);
+
+--
+-- Indeks untuk tabel `tbl_surat`
+--
+ALTER TABLE `tbl_surat`
+  ADD PRIMARY KEY (`id_surat`);
+
+--
 -- Indeks untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
   ADD PRIMARY KEY (`id_user`);
 
 --
+-- Indeks untuk tabel `tbl_user_access`
+--
+ALTER TABLE `tbl_user_access`
+  ADD PRIMARY KEY (`id_user_access`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_bagian`
+--
+ALTER TABLE `tbl_bagian`
+  MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_dinas`
+--
+ALTER TABLE `tbl_dinas`
+  MODIFY `id_dinas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_dispokeluar`
+--
+ALTER TABLE `tbl_dispokeluar`
+  MODIFY `id_dispokeluar` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_dispomasuk`
+--
+ALTER TABLE `tbl_dispomasuk`
+  MODIFY `id_dispomasuk` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_perihal`
+--
+ALTER TABLE `tbl_perihal`
+  MODIFY `id_perihal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_role`
+--
+ALTER TABLE `tbl_role`
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_status_surat`
+--
+ALTER TABLE `tbl_status_surat`
+  MODIFY `id_status_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_sub_menu`
+--
+ALTER TABLE `tbl_sub_menu`
+  MODIFY `id_sub_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_surat`
+--
+ALTER TABLE `tbl_surat`
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_user_access`
+--
+ALTER TABLE `tbl_user_access`
+  MODIFY `id_user_access` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

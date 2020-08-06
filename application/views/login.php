@@ -1,54 +1,78 @@
-<!doctype html>
-<html lang="en">
-<?php $this->load->view('_partials/head.php'); ?>
-    <style>
-        body {background-color: #d6d4dd;}
-    </style>
-<body>
-    <div style="padding-top:150px;">
-        <div class="cotainer">
-            <div class="row justify-content-center">
-                <div class="col-md-4">
-                <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">SI-Maya</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form class="form-horizontal" role="form" action="<?= site_url('login/login_action');?>" method="post">
-                    <div class="card-body">
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                        <input type="email" class="form-control" name="email_user" placeholder="Email" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                        <input type="password" class="form-control" name="password_user" placeholder="Password" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                            <label class="form-check-label">Remember me</label>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                    <button type="submit" class="btn btn-default float-right">Cancel</button>
-                    </div>
-                    <!-- /.card-footer -->
-                </form>
-                </div>
-                </div>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SI-Maya</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="<?php echo base_url();?>assets/img/logo/si-maya.jpg"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?= base_url();?>assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="<?= base_url();?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?= base_url();?>assets/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <b>Sistem Informasi Administrasi</b>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Login</p>
+
+      <form role="form" action="<?= site_url('login/login_action');?>" method="post">
+        <div class="input-group mb-3">
+        <input type="email" class="form-control" name="email_user" placeholder="Email" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
             </div>
+          </div>
         </div>
+        <div class="input-group mb-3">
+        <input type="password" class="form-control" name="password_user" placeholder="Password" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
     </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="<?= base_url();?>assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?= base_url();?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?= base_url();?>assets/dist/js/adminlte.min.js"></script>
+
 </body>
 </html>
